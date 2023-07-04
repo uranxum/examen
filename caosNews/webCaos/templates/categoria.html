@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+
+
+<section class="galeria">
+    <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+        <h2 class="text-center display-1 fw-normal" style="padding-top: 80px; margin-bottom: 55px;">C A T E G O R I A</h2>
+    </div>
+    <div style="width: 80%; margin-left: 10%; margin-bottom: 30px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 20px;">
+        {% for item in noticias %}
+            <div class="col">
+              <div class="card h-100 border-secondary mb-3">
+                <a href="{% url 'NOT' item.idNoticia %}"><img src="{{item.foto.url}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{item.titulo}}</h5>
+                  <h5 class="card-title">{{item.categoria}}</h5>
+                  <p class="card-text">{{item.encabezado}}</p>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+            
+          </div>
+    </div>
+    <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000; border-top: 1px solid #000000;"></div>
+
+</section>
+{% endblock contenido %}

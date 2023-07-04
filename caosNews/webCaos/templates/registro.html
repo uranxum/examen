@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+
+    <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+        <div class="container-fluid p-3 mb-2 bg-white text-dark" id="login"
+            style="width: 50%; margin-left: 25%; margin-top: 7%; border-radius: 25px; border: 1px solid #000000;">
+            <br>
+            <h2 class="text-center fs-1 fw-normal" style="padding-top: 10px;">R E G I S T R O</h2>
+            <h2 class="text-center fs-3 fw-normal" style="margin-bottom: 35px;">U S U A R I O</h2>
+            <div style="width: 80%; margin-left: 10%;">
+            <form action="{% url 'REG' %}" method="POST" onsubmit="return validar()">
+            {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" id="txtNombre" name="txtNombre" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" id="txtApellido" name="txtApellido" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" id="txtEmail" name="txtEmail" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Contraseña</span>
+                    <input type="password" class="form-control" id="pwdPass1" name="pwdPass1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Repita contraseña</span>
+                    <input type="password" class="form-control" id="pwdPass2" name="pwdPass2" required>
+                </div>
+                <div style="justify-content: center;
+                        text-align: center;
+                        margin: 25px;">
+                    ¿Ya estas registrado? <a href="{% url 'LOG' %}">Inicia sesion.</a> </p>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto" style="padding: 15px;">
+                    <input class="btn btn-dark" type="submit" value="Registrar" id="btnEnviar">
+                </div>
+            </form>
+            </div>
+            {% for message in messages %}
+                <div id="mensaje" class="alert alert-success text-center" style="width:30%; margin-left:35%;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+<script>
+    // Función para ocultar el mensaje después de 10 segundos
+    setTimeout(function() {
+        document.getElementById('mensaje').style.display = 'none';
+    }, 4000); 
+</script>
+        </div>
+        <br>
+        <br>
+    </div>
+{% endblock contenido %}    
+{% block js %}
+      <script src="{% static 'js/jquery-3.6.4.min.js' %} "></script>   
+{% endblock js %}

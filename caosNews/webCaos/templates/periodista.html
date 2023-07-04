@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+
+
+    <body>
+        <section class="bienvenidos">
+            <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+                <div class="container-fluid p-3 mb-2 bg-white text-dark"
+                    style="width: 80%; margin-left: 10%; margin-top: 7%; border-radius: 25px; border: 1px solid #000000;">
+                    <figure style="width: 90%; margin-left: 5%;">
+                        <div style="margin-top: 2%; text-align: center;">
+                            <h2 class=" fs-1 fw-normal">{{usuario.first_name}}
+                            </h2>
+                            <h2 class=" fs-1 fw-normal">{{usuario.last_name}}
+                            </h2>
+                            <h5 style="color: black; padding-top: 30px; padding-bottom: 20px;">Cantidad de noticias: {{cantidad}}
+                            </h5>
+
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+                        {% for item in noticias %}
+                            <div class="col">
+                                <div class="card border-secondary mb-3s">
+                                    <a href="{% url 'NOT' item.idNoticia %}"><img src="{{item.foto.url}}"
+                                            class="card-img-top" alt="..."></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{item.titulo}}</h5>
+                                        <p class="card-text">{{item.categoria}}</p>
+                                        <p class="card-text">{{item.encabezado}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                            
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </section>
+        </div>
+{% endblock contenido %}

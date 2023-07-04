@@ -1,0 +1,8 @@
+@import url(NAVBAR.CSS); 
+
+@media (max-width: 600px) {
+    #login {
+        width: 100%;
+        margin-left: 0;
+    }
+}

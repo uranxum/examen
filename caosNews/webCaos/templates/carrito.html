@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+  <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock css %}
+{% block contenido %}
+    <section class="galeria">
+        <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+            <h2 class="text-center display-1 fw-normal" style="padding-top: 80px; margin-bottom: 55px; ;">T I E N D A
+            </h2>
+        </div>
+        <div style="width: 60%; margin-left: 20%; margin-top: 5%; margin-bottom: 5%;">
+            <table class="table table-bordered" style="margin-bottom: 30px;">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if request.session.carrito.items %}
+                    {% for key , value in request.session.carrito.items  %}
+                        <tr>
+                            <td>{{value.nombre}}</td>
+                            <td>{{value.precio}}</td>
+                            <td>{{value.cantidad}}</td>
+                            <td>{{value.total}}</td>
+                            <td><div class="btn-group">
+                                    <a href="{% url 'AGA' value.id %}" class="btn btn-primary">Agregar</a>
+                                    <a href="{% url 'QA' value.id %}" class="btn btn-warning">Quitar</a>
+                                    <a href="{% url 'ELIM' value.id %}" class="btn btn-danger">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'VAC' %}" class="btn btn-danger">Vaciar</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'TIE' %}" class="btn btn-dark"  style="margin: 5px;">Seguir comprando</a>
+                <a href="" class="btn btn-secondary disabled" style="margin: 5px;">Pagar</a>
+            </div>
+
+        </div>
+        <div class="container-fluid p-3 mb-2 bg-secondary text-white"
+            style="border-bottom: 1px solid #000000; border-top: 1px solid #000000;"></div>
+    </section>
+
+{% endblock contenido %}

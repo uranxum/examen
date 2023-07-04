@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+        <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+            <div class="container-fluid p-3 mb-2 bg-white text-dark" style="width: 40%; 
+                margin-left: 30%; 
+                margin-top: 10%; 
+                border-radius: 25px;
+                border: 1px solid #000000;">
+                <h2 class="text-center fs-1 fw-normal" style="padding-top: 10px; margin-bottom: 35px;">C O N T A C T O
+                </h2>
+                <form action="{% url 'CON' %}" method="POST" >
+                {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" id="txtNombre" name="txtNombre" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" id="txtEmail" name="txtEmail" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Titulo</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" id="txtTitulo" name="txtTitulo" required>
+                    </div>
+                    <div class="input-group" style="padding-bottom:20px;">
+                        <span class="input-group-text">Texto</span>
+                        <textarea class="form-control" aria-label="With textarea" id="txtTexto" name="txtTexto" required></textarea>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto" style="margin: 10px;">
+                        <input class="btn btn-dark" type="submit" value="Enviar">
+                    </div>
+                </form>
+                {% for message in messages %}
+                <div id="mensaje" class="alert alert-success text-center" style="width:30%; margin-left:35%; margin-top: 10px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+<script>
+    setTimeout(function() {
+        document.getElementById('mensaje').style.display = 'none';
+    }, 4000); 
+</script>
+            </div>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+
+        </div>
+{% endblock contenido %}        

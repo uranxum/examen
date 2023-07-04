@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+    <section class="galeria">
+        <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+            <h2 class="text-center display-1 fw-normal" style="padding-top: 80px; margin-bottom: 55px;">G A L E R I A
+            </h2>
+            <div style="width: 40%; margin-left: 30%; justify-content: center; text-align: center;">
+                <form action="{% url 'FCO' %}" class="d-flex" method="post" role="search">
+                {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search" id="txtBuscar" name="txtBuscar">
+                    <button class="btn btn-dark" type="submit">Buscar</button>
+                </form>
+                <h5 style="color: black; padding-top: 30px; ">Cantidad de noticias: {{contar}}</h5>
+            </div>
+        </div>
+
+        <div style="width: 80%; margin-left: 10%; margin-bottom: 30px;">
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 20px;">
+                {% for item in noticias %}
+                <div class="col">
+                    <div class="card h-100 border-secondary mb-3">
+                        <a href="{% url 'NOT' item.idNoticia %}"><img src="{{item.foto.url}}" class="card-img-top"
+                                alt="..."></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.titulo}}</h5>
+                            <h6 class="card-title">{{item.categoria}}</h6>
+                            <p class="card-text">{{item.encabezado}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container-fluid p-3 mb-2 bg-secondary text-white"
+            style="border-bottom: 1px solid #000000; border-top: 1px solid #000000;"></div>
+
+    </section>
+{% endblock contenido %}    

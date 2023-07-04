@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+
+
+<body style="width: 80%; margin-left: 10%;">
+
+    <img src="{{noticia.foto.url}}" class="d-block w-100" alt="..."
+        style="height: 50vh; border: 1px solid #000000;">
+
+    <section class="bienvenidos">
+        <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-left: 1px solid #000000; 
+                                                                            border-right: 1px solid #000000;
+                                                                            border-bottom: 1px solid #000000;">
+            <figure style="width: 90%; margin-left: 5%;">
+                <p style="padding-top: 15px;">{{noticia.ubicacion}}, {{noticia.fecha}}.</p>
+                <h2 class="text-center fs-1 fw-normal">{{noticia.titulo}}</h2>
+                <h2 class="text-center fs-1 fw-normal" style="padding-bottom: 25px;">{{noticia.categoria}}</h2>
+                <p class="text-center">{{noticia.encabezado}}</p>
+                <p class="text-center">{{noticia.cuerpo}}</p>
+                <h2 class="text-center fs-1 fw-normal" style="padding-bottom: 25px;">G A L E R I A</h2>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for item in galeria %}
+                      <div class="col">
+                        <div class="card">
+                          <img src="{{item.foto.url}}" class="card-img-top" alt="...">
+                          
+                        </div>
+                      </div>
+                {% endfor %}
+                  </div>
+            </figure>
+        </div>
+    </section>
+{% endblock contenido %}    

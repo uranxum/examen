@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+
+<div class="carrusel" style="border-bottom: 1px solid #000000;">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            {% for item in noticias %}
+            <div class="carousel-item active">
+                <img src="{{item.foto.url}}" class="d-block w-100" alt="..." style="height: 70vh;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{item.titulo}}</h5>
+                    <p>{{item.encabezado}}</p>
+                    <a href="{% url 'NOT' item.idNoticia %}" class="btn btn-sm btn-dark">Leer más...</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<section class="bienvenidos">
+    <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+        <figure class="text-center" style="width: 80%; margin-left: 10%;">
+            <h2 class="text-center fs-1 fw-normal" style="padding: 25px;">B I E N V E N I D O </h2>
+            <p>
+                Aquí encontrarás las últimas noticias y actualizaciones sobre una amplia gama de temas. Desde noticias
+                locales hasta acontecimientos internacionales, nos esforzamos por brindarte información relevante y de
+                calidad.
+
+                Explora nuestras secciones y descubre artículos interesantes, reportajes especiales, entrevistas
+                exclusivas y mucho más. Mantente al día con los acontecimientos más recientes y obtén una perspectiva
+                informada sobre los temas que te interesan.
+
+                Nos comprometemos a proporcionarte contenido objetivo, imparcial y bien investigado. Nuestro equipo de
+                periodistas y escritores trabaja arduamente para brindarte noticias precisas y verificadas.
+
+                ¡Gracias por visitar nuestra página de noticias! Esperamos que encuentres contenido fascinante y
+                perspicaz que te mantenga informado y entretenido. ¡Disfruta de tu experiencia de lectura y no dudes en
+                compartir tus comentarios y sugerencias con nosotros!
+
+                Bienvenido nuevamente y ¡feliz lectura!</p>
+
+        </figure>
+    </div>
+</section>
+<section class="categorias">
+    <div class="container-fluid " style="border-bottom: 1px solid #000000;">
+        <h2 class="text-center fs-1 fw-normal" style="padding: 25px;">C A T E G O R I A S</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="width: 80%; margin-left: 10%; padding-bottom: 40px;">
+            {% for item in categorias %}
+            <div class="col">
+                <div class="card h-100 text-center text-white bg-secondary mb-3 border-dark">
+                    <a href="{% url 'FCA' item.nombre %}"><img src="{{item.foto.url}}" class="card-img-top"
+                            alt="..."></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.nombre}}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="periodistas">
+    <div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+        <h2 class="text-center fs-1 fw-normal" style="padding: 25px;">P E R I O D I S T A S</h2>
+        <div class="row row-cols-1 row-cols-md-5 g-4" style="width: 80%; margin-left: 10%; padding-bottom: 40px;">
+            {% for item in usuarios %}
+            <div class="col">
+                <div class="card border-dark h-80 text-center ">
+                    <div class="card-body">
+                        <h5 class="card-title" >{{item.first_name}} {{item.last_name}}</h5>
+                        <a href="{% url 'PER' item.id %}" class="btn btn-sm btn-dark" style="margin-top:10px;">Ver periodista</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock contenido %}

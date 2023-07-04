@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+<div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;" >
+    <div class="container-fluid p-3 mb-2 bg-white text-dark"
+        style="width: 60%; margin-left: 20%; margin-top: 7%; border-radius: 25px; border: 1px solid #000000;">
+        <h2 class="text-center fs-1 fw-normal" style="padding-top: 10px;">F O R M U L A R I O</h2>
+        <h2 class="text-center fs-3 fw-normal" style="margin-bottom: 35px;">N O T I C I A</h2>
+        <form action="{% url 'FOR' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="inputGroup-sizing-default">Titulo Noticia</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" id="txtTitulo" name="txtTitulo" required>
+            </div>
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
+                <input type="date" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" id="txtFecha" name="txtFecha" required>
+            </div>
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="inputGroup-sizing-default">Ubicación</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" id="txtUbicacion" name="txtUbicacion" required>
+            </div>
+            <div class="input-group mb-3" >
+                <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+                <select class="form-select" id="cboCategoria" name="cboCategoria" required>
+                    <option  disabled>Opciones...</option>
+                    {% for item in categorias %}
+                        <option selected value="{{item.nombre}}">{{item.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-group" style="padding-bottom:20px;">
+                <span class="input-group-text">Encabezado</span>
+                <textarea class="form-control" aria-label="With textarea" id="txtEncabezado" name="txtEncabezado" required></textarea>
+            </div>
+            <div class="input-group" style="padding-bottom:20px;">
+                <span class="input-group-text">Cuerpo</span>
+                <textarea class="form-control" aria-label="With textarea" id="txtCuerpo" name="txtCuerpo" required></textarea>
+            </div>
+            <div class="input-group mb-3" style="padding-bottom:20px;">
+                <input type="file" class="form-control" id="txtImg" name="txtImg" required>
+                <label class="input-group-text" for="inputGroupFile02" id="txtImg">Subir</label>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <input class="btn btn-dark" type="submit" value="Enviar">
+            </div>
+        </form>
+        {% for message in messages %}
+                <div id="mensaje" class="alert alert-success text-center" style="width:30%; margin-left:35%; margin-top: 10px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+<script>
+    // Función para ocultar el mensaje después de 10 segundos
+    setTimeout(function() {
+        document.getElementById('mensaje').style.display = 'none';
+    }, 4000); 
+</script>
+    </div>
+
+    <br>
+    <br>
+</div>
+{% endblock contenido %}

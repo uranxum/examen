@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+
+<div class="container-fluid p-3 mb-2 bg-secondary text-white" style="border-bottom: 1px solid #000000;">
+    <div class="container-fluid p-3 mb-2 bg-white text-dark"
+        style="width: 50%; 
+                margin-left: 25%; 
+                margin-top: 10%; 
+                border-radius: 25px;
+                border: 1px solid #000000;">
+        <h2 class="text-center fs-1 fw-normal" style="padding-top: 10px;">I N I C I A R</h2>
+        <h2 class="text-center fs-3 fw-normal" style="margin-bottom: 45px;">S E S I Ó N</h2>
+        <div style="width: 80%; margin-left: 10%;">
+        <form action="{% url 'LOG' %}" method="POST">
+        {% csrf_token %}
+            <div class="input-group mb-3" style="margin-bottom:35px;">
+                <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" id="txtUser" name="txtUser" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Contraseña</span>
+                <input type="password" class="form-control" id="pwdPass" name="pwdPass" required>
+            </div>
+            <div style="justify-content: center;
+                        text-align: center;
+                        margin: 25px;">
+                ¿Aun no estas registrado? <a href="{% url 'REG' %}">Registrate.</a> </p>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 15px;">
+                <input class="btn btn-dark" type="submit" value="Iniciar sesión">
+            </div>
+        </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{% endblock contenido %}
